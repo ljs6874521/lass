@@ -22,6 +22,7 @@ public class UserController {
     public String findAll(){
         List<User> list =  userService.findAll();
         System.out.println();
+        System.out.println("");
         return list.toString();
     }
 }
