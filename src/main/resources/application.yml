@@ -6,3 +6,6 @@ spring:
     password: 123456
 mybatis:
   mapper-locations: classpath:ljs/mybatis/mapper/*Mapper.xml
+logging:
+  level: com/ljs/demo/controller
+

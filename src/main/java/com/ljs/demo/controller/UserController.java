@@ -1,9 +1,11 @@
 package com.ljs.demo.controller;
 
 import com.ljs.demo.Service.UserService;
+import com.ljs.demo.common.response.ResponseMessage;
 import com.ljs.demo.pojo.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +20,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/findAll", method = {RequestMethod.GET})
-    public String findAll(){
+    @GetMapping(value = "/findAll")
+    public ResponseMessage findAll(){
         List<User> list =  userService.findAll();
-        System.out.println();
-        System.out.println("");
-        return list.toString();
+        log.info("|对外接口|返回参数[{}]", list);
+        return ResponseMessage.ok("用户链表",list);
     }
 }
