@@ -1,6 +1,7 @@
 package com.ljs.demo.controller;
 
 import com.ljs.demo.Service.UserService;
+import com.ljs.demo.common.constant.redis.RedisClient;
 import com.ljs.demo.common.response.ResponseMessage;
 import com.ljs.demo.pojo.domain.User;
 import lombok.extern.slf4j.Slf4j;
@@ -23,13 +24,15 @@ public class UserController {
     @Autowired
     RedisTemplate redisTemplate;
 
+    @Autowired
+    RedisClient redisClient;
+
     @GetMapping(value = "/findAll")
     public ResponseMessage findAll(){
         List<User> list =  userService.findAll();
         log.info("|对外接口|返回参数[{}]", list);
-        User user = list.get(1);
-        redisTemplate.opsForValue().set("ljs",user);
-        System.out.println(redisTemplate.opsForValue().get("ljs"));
+        redisClient.setLists("list",list);
+        System.out.println(redisClient.getListStartEnd("list",0,5));
         return ResponseMessage.ok("用户链表",list);
     }
 }
