@@ -36,5 +36,7 @@ dependencies {
 
 	compile 'com.google.code.gson:gson:2.8.2'
 
+	compile 'com.suixingpay.starter:suixingpay-starter-common:2.2.0-SNAPSHOT'
+
 
 }
